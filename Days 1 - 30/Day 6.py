@@ -9,7 +9,7 @@ cv.waitKey(0)  # Wait for a key press to close the window
 #video
 import cv2 as cv
 
-capture = cv.VideoCapture('CV/Videos/learn.mp4')
+capture = cv.VideoCapture('CV/Videos/dog_video.mp4')
 while True:
     isTrue, frame = capture.read()
     cv.imshow('Video', frame)
