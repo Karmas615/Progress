@@ -38,7 +38,6 @@ cv.waitKey(0)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #color spaces
-import cv2 as cv
 
 img = cv.imread('CV/Photos/download.webp')
 
@@ -68,5 +67,30 @@ cv.waitKey(0)
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #Template matching is a technique used to find a specific object in an image. It is used to find the location of the object in the image. It is also used to reduce the details in the image.
+import numpy as np
+
+img = cv.imread('CV/Photos/soccer_practice.jpg', 0)
+template = cv.imread('CV/Photos/ball.PNG', 0)
+h, w = template.shape
+
+methods = [cv.TM_CCOEFF_NORMED, 
+            cv.TM_CCORR_NORMED, cv.TM_SQDIFF, cv.TM_SQDIFF_NORMED]
+
+for method in methods:
+    img2 = img.copy()
+    
+    result = cv.matchTemplate(img2, template, method)
+    min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
+    if method in [cv.TM_SQDIFF, cv.TM_SQDIFF_NORMED]:
+        location = min_loc
+    else:
+        location = max_loc
+    
+    bottom_right = (location[0] + w, location[1] + h)
+    cv.rectangle(img2, location, bottom_right, 255, 5 )
+    cv.imshow("Img2",img2)
+    cv.waitKey(0)
+    cv.destroyAllWindows
+
 
 
