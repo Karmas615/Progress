@@ -25,3 +25,16 @@ pyautogui.write("Hello")
 pyautogui.press("enter")
 pyautogui.press("space")
 
+import time
+import pyautogui as py
+
+time.sleep(3)
+
+py.moveTo(200,60,3)
+
+py.leftClick(200,60)
+
+py.write("Hi")
+
+py.press("enter")
+
